@@ -2,14 +2,20 @@ package cs544.carrental.car;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import cs544.carrental.domain.Car;
 import cs544.carrental.repositories.CarDAO;
 
+@Service
+@Transactional
 public class CarService implements ICarService{
 	
 	@Autowired
-	CarDAO cardao;
+	private CarDAO cardao;
 	
 
 	@Override
@@ -29,6 +35,8 @@ public class CarService implements ICarService{
 
 	@Override
 	public List<Car> getAllCar() {
+		
+		// TODO Auto-generated method stub
 		return (List<Car>) cardao.findAll();
 	}
 

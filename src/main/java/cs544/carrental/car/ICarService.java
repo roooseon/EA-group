@@ -8,6 +8,5 @@ public interface ICarService {
 	public void addCar(Car car);
 	public void deleteCar(int id);
 	public Car getCarById(int id);
-	public List<Car> getAllCar(); 
-	
+	public List<Car> getAllCar();
 }

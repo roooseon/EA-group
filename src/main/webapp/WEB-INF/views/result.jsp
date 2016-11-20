@@ -5,19 +5,19 @@
 </head>
 <body>
 
-<h2>Submitted Car Information</h2>
+<h2>Submitted Student Information</h2>
    <table>
     <tr>
-        <td>Type</td>
-        <td>${type}</td>
+        <td>Model</td>
+        <td>${model}</td>
     </tr>
     <tr>
-        <td>Status</td>
-        <td>${status}</td>
+        <td>Built Year</td>
+        <td>${builtYear}</td>
     </tr>
     <tr>
-        <td>Seat</td>
-        <td>${seat}</td>
+        <td>Company</td>
+        <td>${company}</td>
     </tr>
 </table>  
 </body>

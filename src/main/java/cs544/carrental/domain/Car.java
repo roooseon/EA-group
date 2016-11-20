@@ -1,6 +1,8 @@
 package cs544.carrental.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -9,22 +11,51 @@ import javax.persistence.OneToOne;
 @Entity
 public class Car {
 
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
 	@Id
 	@GeneratedValue
 	private int id;
+	private String company;
 	private String model;
-	private String type;
+	private int builtYear;
 	private String number;
 	private int seat;
-	private Status status;
 	
-	/*@ManyToOne
+	@Enumerated(EnumType.STRING)
+	private CarType carType;
+	
+	public CarType getCarType() {
+		return carType;
+	}
+
+	public void setCarType(CarType carType) {
+		this.carType = carType;
+	}	
+	
+	@Enumerated(EnumType.STRING)
+	private Status status;
+		
+	
+	public int getBuiltYear() {
+		return builtYear;
+	}
+
+	public void setBuiltYear(int builtyear) {
+		this.builtYear = builtyear;
+	}
+
+	@ManyToOne
 	private User user;
 	
 	@OneToOne(mappedBy ="car")
 	private Rent rent;
-
-	
 
 	public User getUser() {
 		return user;
@@ -32,18 +63,18 @@ public class Car {
 
 	public void setUser(User user) {
 		this.user = user;
-	}*/
+	}
 
 	public Car() {
 	}
 
-	/*public Rent getRent() {
+	public Rent getRent() {
 		return rent;
 	}
 
 	public void setRent(Rent rent) {
 		this.rent = rent;
-	}*/
+	}
 
 	public Status getStatus() {
 		return status;
@@ -61,12 +92,12 @@ public class Car {
 		this.model = model;
 	}
 
-	public String getType() {
-		return type;
+	public CarType getType() {
+		return carType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setType(CarType type) {
+		this.carType = type;
 	}
 
 	public String getNumber() {
@@ -84,7 +115,4 @@ public class Car {
 	public void setSeat(int seat) {
 		this.seat = seat;
 	}
-
-	
-
 }
