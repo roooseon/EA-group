@@ -11,21 +11,23 @@
 <title>Car List</title>
 </head>
 <body>
-	<div
-		style="border: 2px solid blue; width: 300px; float: left; margin: 5px">
+	<div style="border: 2px solid blue; float: left; margin: 5px">
 		<h1>Car Details</h1>
 
 		<c:forEach items="${car}" var="car">
-<%-- 			<p>Identity:${car.id }</p> --%>
-			<p>Company: ${car.company}</p>
-			<p>Status:${car.status }</p>
-			<p>Type: ${car.carType}</p>
-			<p>Plate Number: ${car.number }</p>
-			<p>Model: ${car.model}</p>
-			<p>Manufactured Year: ${car.builtYear }</p>
+			<p>Company: ${car.company} Status:${car.status } Type:
+				${car.carType} Plate Number: ${car.number} Model: ${car.model}
+				Manufactured Year: ${car.builtYear}</p>
+			<input type="button" value="Rent">
 			
+			<a href="http://www.google.com/">  <input type="button" value="Visit Google" />
+			</a>
 
 		</c:forEach>
+
+		<br />
+
+
 
 		<%-- <br /> <a
 			href="<spring:url value="/product/delete?id=${product.id}" /> ">
@@ -35,6 +37,7 @@
 			</span> Update
 		</a> --%>
 	</div>
+
 
 
 </body>
