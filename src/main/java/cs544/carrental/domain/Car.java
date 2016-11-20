@@ -18,7 +18,7 @@ public class Car {
 	private int seat;
 	private Status status;
 	
-	@ManyToOne
+	/*@ManyToOne
 	private User user;
 	
 	@OneToOne(mappedBy ="car")
@@ -32,18 +32,18 @@ public class Car {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
+	}*/
 
 	public Car() {
 	}
 
-	public Rent getRent() {
+	/*public Rent getRent() {
 		return rent;
 	}
 
 	public void setRent(Rent rent) {
 		this.rent = rent;
-	}
+	}*/
 
 	public Status getStatus() {
 		return status;

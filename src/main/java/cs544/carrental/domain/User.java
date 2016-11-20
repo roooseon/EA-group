@@ -23,7 +23,8 @@ public abstract class User {
 	private String name;
 	private String username;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany
+	//(mappedBy="user")
 	private List<Car> cars;
 	//private String email;
 	

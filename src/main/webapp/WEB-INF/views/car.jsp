@@ -6,7 +6,7 @@
 <body>
 
 <h2>Add car Information</h2>
-<form:form method="POST" action="/result">
+<form:form method="POST" action="/addcar">
    <table>
     <tr>
         <td><form:label path="model">Model</form:label></td>
