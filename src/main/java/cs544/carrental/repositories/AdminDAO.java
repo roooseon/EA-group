@@ -1,12 +1,12 @@
 package cs544.carrental.repositories;
 
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import cs544.carrental.domain.Customer;
+import cs544.carrental.domain.Admin;
 
-@Repository("customerRepository")
-public interface CustomerDAO extends CrudRepository<Customer, Integer>{
+
+@Repository("adminRepository")
+public interface AdminDAO extends CrudRepository<Admin,Integer>{
 
 }
