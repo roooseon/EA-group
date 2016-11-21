@@ -28,6 +28,7 @@ public class Car {
 	
 	
 	
+	
 	@OneToOne(mappedBy ="car")
 	private Rent rent;
 
