@@ -25,7 +25,11 @@ public class Car {
 	private String number;
 	private int seat;
 	private int dailyRent;
+	@ManyToOne
+	private Admin admin;
 	
+	@ManyToOne
+	private Customer customer;
 	
 	
 	@OneToOne(mappedBy ="car")
