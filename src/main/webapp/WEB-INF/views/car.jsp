@@ -41,7 +41,7 @@
 				<td>Status</td>
 				<td><form:select path="status" id="status">
 						<form:option value="NONE" label="--- Select ---"/>
-						<form:options items ="${value }"/>
+						<form:options items ="${value}"/>
 						
 				</form:select></td>
 			</tr>
