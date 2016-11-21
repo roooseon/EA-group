@@ -43,20 +43,35 @@ public class CarController {
 		return "redirect:/carlist";
 	}
 	
-	
-	@RequestMapping(value = "/car/{id}", method = RequestMethod.POST)
-	public String car(@PathVariable int id, Model model) {
-		carService.deleteCar(id);	
-		/*String[] val = id.split(".");
-		System.out.println(val[0] +"-" + val[1]);*/
-		return "redirect:/carlist";
-	}
-	
 	@RequestMapping(value = "/carlist", method = RequestMethod.GET)
 	public String carList(Map<String, Object> model) {
 		model.put("car", carService.getAllCar());
 		return "carList";
+	}	
+	
+	@RequestMapping("/cardetails/{id}")
+	public String detailVehicle(Model model, @PathVariable("id") int id, Car car) {
+		Car findOne = carService.getCarById(id);
+		model.addAttribute("car", findOne);
+		System.out.println(id);
+		return "carDetails";
 	}
+	
+	/*@RequestMapping(value = "/cardetails/{id}", method = RequestMethod.POST)
+	public String car(@PathVariable int id, Model model) {
+		carService.getCarById(id);
+		return "carDetails";
+	}*/
+	
+	/*@RequestMapping(value = "/car/{id}", method = RequestMethod.POST)
+	public String car(@PathVariable int id, Model model) {
+		carService.deleteCar(id);	
+		String[] val = id.split(".");
+		System.out.println(val[0] +"-" + val[1]);
+		return "redirect:/carlist";
+	}*/
+	
+	
 	
 	@RequestMapping(value ="/signup", method = RequestMethod.GET)
 	public String signUp(){

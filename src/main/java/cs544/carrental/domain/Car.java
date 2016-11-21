@@ -26,8 +26,7 @@ public class Car {
 	private int seat;
 	private int dailyRent;
 	
-	@ManyToOne
-	private User user;
+	
 	
 	@OneToOne(mappedBy ="car")
 	private Rent rent;
@@ -84,13 +83,6 @@ public class Car {
 	}
 
 	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public Car() {
 	}
