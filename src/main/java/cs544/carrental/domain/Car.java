@@ -1,24 +1,21 @@
 package cs544.carrental.domain;
 
+import java.sql.Blob;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class Car {
 
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
+	
 	@Id
 	@GeneratedValue
 	private int id;
@@ -27,7 +24,17 @@ public class Car {
 	private int builtYear;
 	private String number;
 	private int seat;
+	private int dailyRent;
 	
+	@ManyToOne
+	private User user;
+	
+	@OneToOne(mappedBy ="car")
+	private Rent rent;
+
+	@Enumerated(EnumType.STRING)
+	private Status status;
+		
 	@Enumerated(EnumType.STRING)
 	private CarType carType;
 	
@@ -39,9 +46,34 @@ public class Car {
 		this.carType = carType;
 	}	
 	
-	@Enumerated(EnumType.STRING)
-	private Status status;
-		
+	@Lob
+	private byte[] image;
+	
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
+	
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	
 	public int getBuiltYear() {
 		return builtYear;
@@ -51,12 +83,7 @@ public class Car {
 		this.builtYear = builtyear;
 	}
 
-	@ManyToOne
-	private User user;
 	
-	@OneToOne(mappedBy ="car")
-	private Rent rent;
-
 	public User getUser() {
 		return user;
 	}
@@ -114,5 +141,13 @@ public class Car {
 
 	public void setSeat(int seat) {
 		this.seat = seat;
+	}
+
+	public int getDailyRent() {
+		return dailyRent;
+	}
+
+	public void setDailyRent(int dailyRent) {
+		this.dailyRent = dailyRent;
 	}
 }

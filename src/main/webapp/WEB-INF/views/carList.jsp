@@ -13,29 +13,51 @@
 <body>
 	<div style="border: 2px solid blue; float: left; margin: 5px">
 		<h1>Car Details</h1>
-
+	<table>
+		<tr>
+			<td>Company</td>
+			<td>Model</td>
+			<td>Status</td>
+			<td>Type</td>
+			<td>Plate Number</td>
+			<td>Manufactured year</td>
+			<td>Image</td>
+		</tr>
 		<c:forEach items="${car}" var="car">
-			<p>Company: ${car.company} Status:${car.status } Type:
-				${car.carType} Plate Number: ${car.number} Model: ${car.model}
-				Manufactured Year: ${car.builtYear}</p>
-			<input type="button" value="Rent">
+			<tr>
+			 
+			<td>${car.company} </td>
+			<td>${car.model}</td>
+			<td>${car.status }</td>
+			<td>${car.carType}</td>
+			<td>${car.number}</td>
+			<td>${car.builtYear}</td>
+			<td>${car.dailyRent}</td>
 			
-			<a href="http://www.google.com/">  <input type="button" value="Visit Google" />
-			</a>
-
+			<td>${car.image}</td>
+			<td><form action="car/${car.id}" method="post">
+				<input type="submit" name="delete" value= "delete" /> 
+			</form></td>
+			
+			
+			
+			<%-- <td><form action="car/${car.id}" method="post">
+				<input type="submit" name="rent" value= "rent" /> 
+			</form></td> --%>
+		</tr>
 		</c:forEach>
+		
+	</table>
 
-		<br />
 
 
-
-		<%-- <br /> <a
-			href="<spring:url value="/product/delete?id=${product.id}" /> ">
-			</span> Delete
-		</a> <br /> <a
-			href="<spring:url value="/product/update?id=${product.id}" /> ">
-			</span> Update
-		</a> --%>
+<!-- 		<br /> <a -->
+<%-- 			href="<spring:url value="/product/delete?id=${car.id}" /> "> --%>
+<!-- 			</span> Delete -->
+<!-- 		</a> <br /> <a -->
+<%-- 			href="<spring:url value="/product/update?id=${car.id}" /> "> --%>
+<!-- 			</span> Update -->
+<!-- 		</a> -->
 	</div>
 
 
