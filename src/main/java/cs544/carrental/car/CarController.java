@@ -40,30 +40,12 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "/addcar", method = RequestMethod.POST)
-	public String add(@Valid Car car, BindingResult result){		
+	public String add(@Valid Car car, BindingResult result, Model model){		
 		String view = "redirect:/carlist";
 		
 		MultipartFile carImage = car.getTempImg();
 		String rootDirectory = servletContext.getRealPath("/"); 
-			
-		//carService.addCar(car);
 		
-		/*try {
-			carImage.transferTo(new File(rootDirectory+"\\images\\" + car.getId() + ".jpg"));
-		} catch (IllegalStateException e1) {
-			
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			
-			e1.printStackTrace();
-		}
-		try {
-			car.setImage(car.getTempImg().getBytes());
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-		*/
 		
 			if(!result.hasErrors()) {
 				Car savedCar = carService.addCar(car);
@@ -90,6 +72,7 @@ public class CarController {
 		else{
 			view = "addCar";
 		}
+			model.addAttribute("message",new String("Car added successfully"));	
 		return view;
 	}
 	

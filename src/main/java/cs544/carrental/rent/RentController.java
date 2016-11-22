@@ -2,10 +2,17 @@ package cs544.carrental.rent;
 
 
 
-//import java.util.List;
+//import java.util.Date;
+
+//import java.time.LocalDate;
+
+import java.lang.Object;
+
 
 import javax.servlet.http.HttpSession;
 
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -65,7 +72,13 @@ public class RentController {
 		
 		
 		model.addAttribute("rent", rent);
-
+		
+		LocalDate dateStart = new LocalDate(rent.getRentedDate());
+        LocalDate dateEnd= new LocalDate(rent.getReturnedDate());
+		
+		int days = Days.daysBetween(dateStart,dateEnd).getDays();
+		
+		System.out.println("Total amount" + days * car.getDailyRent());
 		rentService.saveRent(rent);
 		
 		session.setAttribute("rent", rent);
