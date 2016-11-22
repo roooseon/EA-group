@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -27,8 +28,18 @@ public class Customer {
 	private String email;
 	@Size(min = 1, message = "Cannot be empty")
 	private String phoneNumber;
+	@Valid
 	@Embedded
 	private Address address;
+	private String role="user";
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public String getConfirmPassword() {
 		return confirmPassword;

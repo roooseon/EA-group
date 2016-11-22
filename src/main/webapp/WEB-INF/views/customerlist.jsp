@@ -11,15 +11,38 @@
 </head>
 <body>
 	<div align="center">
-		<table border="0">
-                <tr>
-                    <td colspan="2" align="center"><h2>Spring MVC Form Demo - Registration</h2></td>
-                </tr>
-                <c:forEach var="${ }"></c:forEach>
+	<table border="0">
+	<tr>
+            <td align="center"><h2>Spring MVC Form Demo - Registration</h2></td>
+    </tr>
+                </table>
+		<table border="1">
+                
                 
                 <tr>
-                    <td>Name: "{}"</td>
+					<td>Name</td>
+					<td>Username</td>
+					<td>email</td>
+					<td>Country</td>
+					<td>State</td>
+					<td>City</td>
+					<td>Zip</td>
+					<td>PhoneNumber</td>
+				</tr>
+                
+                <c:forEach var="customer" items="${customers}">
+                
+                <tr>
+                    <td>${customer.name}</td>
+                    <td>${customer.username}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.address.country}</td>
+                    <td>${customer.address.state}</td>
+                     <td>${customer.address.city}</td>
+                     <td>${customer.address.zip}</td>
+                     <td>${customer.phoneNumber}</td>
                 </tr>
+                </c:forEach>
           </table>
 	</div>
 </body>

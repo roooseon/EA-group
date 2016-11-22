@@ -5,10 +5,12 @@ package cs544.carrental.customer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cs544.carrental.domain.Customer;
 import cs544.carrental.repositories.CustomerDAO;
 
+@Service
 public class CustomerServiceImpl implements ICustomerService{
 	
 	@Autowired
@@ -37,5 +39,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		customerDAO.save(c);
 	}
 
+	
+	
 	
 }

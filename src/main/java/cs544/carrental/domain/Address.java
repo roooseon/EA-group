@@ -1,12 +1,17 @@
 package cs544.carrental.domain;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 
 @Embeddable
 public class Address {
 	private String city;
 	private String zip;
+	
+	@Size(min = 1, message = "Cannot be empty")
 	private String state;
+	
+	@Size(min = 1, message = "Cannot be empty")
 	private String country;
 
 	public String getCity() {

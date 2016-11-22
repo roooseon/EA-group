@@ -17,8 +17,11 @@ public class AdminService implements IAdminService{
 	@Override
 	public void addAdmin(Admin admin) {
 		List<Admin> admins=(List<Admin>) adminDAO.findAll();
-		if(admins.size()==0 || admins==null)
+		/*System.out.println("In adminservice out");*/
+		if(admins.size()==0 || admins==null){
 		adminDAO.save(admin);
+		/*System.out.println("In adminservice in");*/
+		}
 	}
 
 }

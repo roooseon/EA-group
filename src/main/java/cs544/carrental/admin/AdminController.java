@@ -13,11 +13,26 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@RequestMapping(value={"/"}, method=RequestMethod.GET)
+	/*@RequestMapping(value={"/"}, method=RequestMethod.GET)
 	public String start(@ModelAttribute("customer")Customer customer){
+		System.out.println("In admin controller");
 		adminService.addAdmin(new Admin());
-		return "signup";
+		return "userlogin";
+	}*/
+	
+	@RequestMapping(value={"/admin"}, method=RequestMethod.GET)
+	public String login(@ModelAttribute("admin")Admin admin){
+		return "adminlogin";
 	}
+	
+	@RequestMapping(value={"/admin"}, method=RequestMethod.POST)
+	public String saved(@ModelAttribute("admin")Admin admin){
+		return "success";
+	}
+	
+	
+	
+	
 	
 
 }
