@@ -81,10 +81,10 @@ div {
 						<input type="submit" value="Update" />
 					</form></td>
 
-				<td><form action="/rentID/${car.id}" method = "GET" >
+				<%-- <td><form action="/rentID/${car.id}" method = "GET" >
 						<input type="submit" value="Rent" />
 					</form>
-				</td>
+				</td> --%>
 				</tr>
 
 		</table>

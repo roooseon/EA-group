@@ -47,7 +47,7 @@ public class UrlHandler implements AuthenticationSuccessHandler {
 			return "/carlist";
 		}
 		else{
-			return "/signup";
+			return "/carlistuser";
 		}
 	}
 

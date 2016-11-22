@@ -31,12 +31,13 @@ div {
 </head>
 <body>
 	<div>
-	<br /> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali ma Januhos</a><br />
-				 <%-- Current Locale : ${pageContext.response.locale} --%>
+	<!-- <br /> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali</a><br />
+	 -->	
 		<form:form commandName="car" method="POST" action="addcar"
 			enctype="multipart/form-data">
 
 			<h2>Add Car Information</h2>
+			<h3></h1><br /> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali</a><br /></h3>
 			<table>
 				<tr>
 					<td><form:label path="company"><spring:message code="message.company" text="Default Text" /></form:label></td>
