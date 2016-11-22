@@ -72,13 +72,13 @@ public class RentController {
 		
 		
 		model.addAttribute("rent", rent);
-		
+		/*
 		LocalDate dateStart = new LocalDate(rent.getRentedDate());
         LocalDate dateEnd= new LocalDate(rent.getReturnedDate());
 		
-		int days = Days.daysBetween(dateStart,dateEnd).getDays();
+		int days = (int)Days.daysBetween(dateStart,dateEnd).getDays();
 		
-		System.out.println("Total amount" + days * car.getDailyRent());
+		System.out.println("Total amount" + days * car.getDailyRent());*/
 		rentService.saveRent(rent);
 		
 		session.setAttribute("rent", rent);
