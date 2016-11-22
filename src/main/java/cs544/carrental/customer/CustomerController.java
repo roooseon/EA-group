@@ -36,7 +36,8 @@ public class CustomerController {
 			return "signup";
 		}
 		customerservice.addCustomer(customer);
-		return "success";
+		model.addAttribute("message",new String("Congratulations your data is successfully saved!!!"));
+		return "userlogin";
 	}
 	
 	/*@RequestMapping(value={"/check"}, method=RequestMethod.POST)

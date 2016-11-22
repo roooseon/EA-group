@@ -177,10 +177,10 @@ public class CarController {
 		return "redirect:/carlist";
 	}
 	
-	@RequestMapping(value ="/signupcar", method = RequestMethod.GET)
+	/*@RequestMapping(value ="/signupcar", method = RequestMethod.GET)
 	public String signUp(){
 		return "signup";
-	}
+	}*/
 	
 	
 	
