@@ -31,7 +31,9 @@
 		
 	</table>
 	
-		<form method="GET" action="/carlist">
+	<div><img height="100px" width="100px" src="../images/${car.id}.jpg"/> </div>
+	
+		<form method="GET" action="/updatecarstatus/${car.id}">
 			<input type = "submit" value = "Home" />
 			</form>
 

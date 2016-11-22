@@ -27,6 +27,8 @@
 		
 	</table>
 	
+	<div><img height="100px" width="100px" src="../images/${car.id}.jpg"/> </div>
+	
 	<form method="POST" action="/payment">
 	<table>
 			<tr>
