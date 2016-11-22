@@ -48,6 +48,7 @@ div {
 				<th>Status</th>
 				<th>Type</th>
 				<th>Plate Number</th>
+				<th>Seat</th>
 				<th>Manufactured year</th>
 				<th>Daily Rent</th>
 				<th>Image</th>
@@ -60,6 +61,7 @@ div {
 				<td>${car.status }</td>
 				<td>${car.carType}</td>
 				<td>${car.number}</td>
+				<td>${car.model}</td>
 				<td>${car.builtYear}</td>
 				<td>${car.dailyRent}</td>
 				<td><img height="60px" width="60px" src="../images/${car.id}.jpg"/> </td>

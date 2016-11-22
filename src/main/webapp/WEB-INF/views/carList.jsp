@@ -26,6 +26,7 @@ body {
 				<th>Status</th>
 				<th>Type</th>
 				<th>Plate Number</th>
+				<th>Seat</th>
 				<th>Manufactured year</th>
 				<th>Daily Rent</th>
 				<th>Image</th>
@@ -38,9 +39,9 @@ body {
 					<td>${car.status }</td>
 					<td>${car.carType}</td>
 					<td>${car.number}</td>
+					<td>${car.seat}</td>
 					<td>${car.builtYear}</td>
 					<td>${car.dailyRent}</td>
-
 					<td><img height="30px" width="30px"
 						src="../images/${car.id}.jpg" /></td>
 
