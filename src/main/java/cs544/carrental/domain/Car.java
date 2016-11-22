@@ -58,8 +58,8 @@ public class Car {
 	@ManyToOne
 	private Customer customer;
 
-	@OneToOne(mappedBy = "car")
-	private Rent rent;
+	/*@OneToOne(mappedBy = "car")
+	private Rent rent;*/
 	
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -110,13 +110,13 @@ public class Car {
 		this.builtYear = builtyear;
 	}
 
-	public Rent getRent() {
+/*	public Rent getRent() {
 		return rent;
 	}
 
 	public void setRent(Rent rent) {
 		this.rent = rent;
-	}
+	}*/
 
 	public Status getStatus() {
 		return status;

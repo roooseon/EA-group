@@ -79,7 +79,7 @@ div {
 						<input type="submit" value="Update" />
 					</form></td>
 
-				<td><form action="${car.id}">
+				<td><form action="/rentID/${car.id}" method = "GET" >
 						<input type="submit" value="Rent" />
 					</form>
 				</td>
