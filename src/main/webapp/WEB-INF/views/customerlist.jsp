@@ -41,6 +41,9 @@
 					<td>${customer.address.city}</td>
 					<td>${customer.address.zip}</td>
 					<td>${customer.phoneNumber}</td>
+					<td><form action="customerdelete/${customer.id}">
+							<input type="submit" value="Delete"/></td>
+					</form>
 				</tr>
 			</c:forEach>
 		</table>
