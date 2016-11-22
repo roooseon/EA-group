@@ -70,7 +70,8 @@ div {
 
 		<table style="border: 0px solid black;">
 			<tr>
-				<td><form action="${car.id}">
+	
+				<td><form action="/rentID/${car.id}" method = "GET" >
 						<input type="submit" value="Rent" />
 					</form>
 				</td>

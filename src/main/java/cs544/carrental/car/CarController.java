@@ -145,7 +145,7 @@ public class CarController {
 	
 	@RequestMapping(value = "/carlistuser", method = {RequestMethod.GET, RequestMethod.POST})
 	public String carListUser(Map<String, Object> model) {
-		model.put("car", carService.getAllCar());
+		model.put("car", carService.getAvailableCars());
 		return "carListUser";
 	}	
 	
