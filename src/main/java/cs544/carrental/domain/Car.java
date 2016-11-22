@@ -1,7 +1,5 @@
 package cs544.carrental.domain;
 
-import java.sql.Blob;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,49 +8,76 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Car {
 
-	
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotEmpty
 	private String company;
+	@NotEmpty
 	private String model;
+	@Range(min = 1970, max = 2016)
 	private int builtYear;
+	@NotEmpty
 	private String number;
+	@NotNull
 	private int seat;
+	
+	@NotNull(message = "must be number")
+	@Value("#{new Integer.parseInt('${dailyRent}')}")
 	private int dailyRent;
+
+	@Lob
+	private byte[] image;
+	
+	@Transient
+	private MultipartFile tempImg;
+
+	public MultipartFile getTempImg() {
+		return tempImg;
+	}
+
+	public void setTempImg(MultipartFile tempImg) {
+		this.tempImg = tempImg;
+	}
+
 	@ManyToOne
 	private Admin admin;
-	
+
 	@ManyToOne
 	private Customer customer;
-	
-	
-	
-	@OneToOne(mappedBy ="car")
-	private Rent rent;
 
+	@OneToOne(mappedBy = "car")
+	private Rent rent;
+	
 	@Enumerated(EnumType.STRING)
 	private Status status;
-		
+
 	@Enumerated(EnumType.STRING)
 	private CarType carType;
-	
+
+	public Car() {
+	}
+
 	public CarType getCarType() {
 		return carType;
 	}
 
 	public void setCarType(CarType carType) {
 		this.carType = carType;
-	}	
-	
-	@Lob
-	private byte[] image;
-	
+	}
+
 	public byte[] getImage() {
 		return image;
 	}
@@ -60,8 +85,7 @@ public class Car {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	
-	
+
 	public String getCompany() {
 		return company;
 	}
@@ -78,18 +102,12 @@ public class Car {
 		this.id = id;
 	}
 
-	
 	public int getBuiltYear() {
 		return builtYear;
 	}
 
 	public void setBuiltYear(int builtyear) {
 		this.builtYear = builtyear;
-	}
-
-	
-
-	public Car() {
 	}
 
 	public Rent getRent() {
