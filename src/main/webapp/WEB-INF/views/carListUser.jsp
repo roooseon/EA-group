@@ -41,10 +41,9 @@ body {
 					<td>${car.builtYear}</td>
 					<td>${car.dailyRent}</td>
 
-					<td><img height="30px" width="30px"
-						src="../images/${car.id}.jpg" /></td>
+					<td><img height="30px" width="30px" src="../images/${car.id}.jpg"/> </td>
 
-					<td><form action="cardetails/${car.id}">
+					<td><form action="cardetailsuser/${car.id}">
 							<input type="submit" value="View Details" />
 						</form></td>
 
@@ -57,13 +56,14 @@ body {
 		</table>
 
 
-		<table style="border: 0px solid black;">
-			<tr>
-				<td><form action="/addcar">
-						<input type="submit" value="Addcar" />
-					</form></td>
-			</tr>
-		</table>
+
+		<!-- 		<br /> <a -->
+		<%-- 			href="<spring:url value="/product/delete?id=${car.id}" /> "> --%>
+		<!-- 			</span> Delete -->
+		<!-- 		</a> <br /> <a -->
+		<%-- 			href="<spring:url value="/product/update?id=${car.id}" /> "> --%>
+		<!-- 			</span> Update -->
+		<!-- 		</a> -->
 	</div>
 
 

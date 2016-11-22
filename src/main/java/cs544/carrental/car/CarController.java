@@ -137,18 +137,38 @@ public class CarController {
 	
 
 
-	@RequestMapping(value = "/carlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/carlist", method = {RequestMethod.GET, RequestMethod.POST})
 	public String carList(Map<String, Object> model) {
 		model.put("car", carService.getAllCar());
 		return "carList";
 	}	
 	
+	@RequestMapping(value = "/carlistuser", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUser(Map<String, Object> model) {
+		model.put("car", carService.getAllCar());
+		return "carListUser";
+	}	
+	
+/*	@RequestMapping(value = "/carlist", method = RequestMethod.POST)
+	public String carListPOST(Map<String, Object> model) {
+		model.put("car", carService.getAllCar());
+		return "carList";
+	}*/
+	
 	@RequestMapping("/cardetails/{id}")
-	public String detailVehicle(Model model, @PathVariable("id") int id, Car car) {
+	public String detailCar(Model model, @PathVariable("id") int id, Car car) {
 		Car findOne = carService.getCarById(id);
 		model.addAttribute("car", findOne);
 		System.out.println(id);
 		return "carDetails";
+	}
+	
+	@RequestMapping("/cardetailsuser/{id}")
+	public String detailCarUser(Model model, @PathVariable("id") int id, Car car) {
+		Car findOne = carService.getCarById(id);
+		model.addAttribute("car", findOne);
+		System.out.println(id);
+		return "carDetailsUser";
 	}
 	
 	@RequestMapping("/deletecar/{id}")

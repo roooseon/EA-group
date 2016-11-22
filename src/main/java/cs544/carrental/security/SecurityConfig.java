@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin()
 		.loginPage("/login")
-		.successForwardUrl("/addcar")
+		.successForwardUrl("/carlistuser")
 		.permitAll();
 
 	}
