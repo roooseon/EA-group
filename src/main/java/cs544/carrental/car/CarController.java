@@ -119,7 +119,6 @@ public class CarController {
 	}
 	
 
-
 	@RequestMapping(value = "/carlist", method = {RequestMethod.GET, RequestMethod.POST})
 	public String carList(Map<String, Object> model) {
 		model.put("car", carService.getAllCar());
@@ -161,10 +160,11 @@ public class CarController {
 		return "redirect:/carlist";
 	}
 	
-	@RequestMapping(value ="/signup", method = RequestMethod.GET)
+	@RequestMapping(value ="/signupcar", method = RequestMethod.GET)
 	public String signUp(){
 		return "signup";
 	}
+	
 	
 	
 	

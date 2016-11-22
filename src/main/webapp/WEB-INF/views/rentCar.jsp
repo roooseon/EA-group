@@ -29,7 +29,7 @@
 	</table>
 
 
-
+	<div><img height="100px" width="100px" src="../images/${car.id}.jpg"/> </div>
 
 
 
@@ -55,7 +55,11 @@
 			</tr>
 
 		</table>
+		
 	</form>
+	
+	
+	
 </body>
 
 </body>

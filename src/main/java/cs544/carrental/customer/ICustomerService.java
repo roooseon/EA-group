@@ -10,4 +10,5 @@ public interface ICustomerService {
 	 public Customer getCustomerById(int id);
 	 public void addCustomer(Customer customer);
 	 public void updateCustomer(int id);
+	 public void deleteCustomer(int id);
 }

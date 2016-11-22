@@ -10,19 +10,25 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 //import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cs544.carrental.car.CarService;
 import cs544.carrental.domain.Car;
 import cs544.carrental.domain.Payment;
 import cs544.carrental.domain.Rent;
+import cs544.carrental.domain.Status;
 
 @Controller
 public class PaymentController {
 	
 	@Autowired
 	private IPaymentService payService;
+	
+	@Autowired
+	CarService carService;
 	
 	
 	/*@RequestMapping(value = "/payment")
@@ -69,10 +75,21 @@ public class PaymentController {
 
 }
 	
-	@RequestMapping(value = "/home")
+	/*@RequestMapping(value = "/home")
 	public String rentDetail(Model model){
 		
 		return "carList";
+	}*/
+	
+	@RequestMapping(value = "/updatecarstatus/{id}", method = RequestMethod.GET)
+	public String update(@PathVariable("id") int id, Model model){
+		Car car = (Car)carService.getCarById(id);
+		car.setStatus(Status.RENTED);
+		
+		carService.addCar(car);
+		
+		
+		return "redirect:/carlistuser";
 	}
 	
 	
