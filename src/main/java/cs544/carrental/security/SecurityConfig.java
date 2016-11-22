@@ -31,6 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http 
+		.csrf()
+		.disable()
 		.authorizeRequests()
 		.antMatchers("/customer/customers").hasRole("ADMIN")
 		.antMatchers("/customer/signup").permitAll()
@@ -39,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin()
 		.loginPage("/login").successHandler(successHandler)
-		/*successForwardUrl("/carlist")*/
 		.permitAll();
 
 	}
@@ -63,5 +64,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				"select user.name,user.role from finalproject.user where user.name=? ");*/
     }
     	
-
 }

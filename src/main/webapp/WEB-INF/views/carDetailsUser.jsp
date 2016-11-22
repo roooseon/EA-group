@@ -61,7 +61,7 @@ div {
 				<td>${car.status }</td>
 				<td>${car.carType}</td>
 				<td>${car.number}</td>
-				<td>${car.seat}</td>
+				<td>${car.model}</td>
 				<td>${car.builtYear}</td>
 				<td>${car.dailyRent}</td>
 				<td><img height="60px" width="60px" src="../images/${car.id}.jpg"/> </td>
@@ -72,14 +72,6 @@ div {
 
 		<table style="border: 0px solid black;">
 			<tr>
-				<td><form action="/deletecar/${car.id}">
-						<input type="submit" value="Delete" />
-					</form></td>
-
-
-				<td><form action="/updatecar/${car.id}">
-						<input type="submit" value="Update" />
-					</form></td>
 
 				<td><form action="/rentID/${car.id}" method = "GET" >
 						<input type="submit" value="Rent" />

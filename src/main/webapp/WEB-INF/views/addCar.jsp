@@ -8,14 +8,15 @@
 <head>
 <title>Add a new car</title>
 <style>
-body{
-background-color: #f2f2f2;
+body {
+	background-color: #f2f2f2;
 }
 
-form {width: 50%;
-      margin-right: 10%;
-      margin-left: 40%;
-      }
+form {
+	width: 50%;
+	margin-right: 10%;
+	margin-left: 40%;
+}
 
 input[type=submit]:hover {
 	background-color: #45a049;
@@ -30,18 +31,21 @@ div {
 </head>
 <body>
 	<div>
-		
-		<form:form commandName="car" method="POST" action="addcar" enctype="multipart/form-data" >
+	<br /> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali ma Januhos</a><br />
+				 <%-- Current Locale : ${pageContext.response.locale} --%>
+		<form:form commandName="car" method="POST" action="addcar"
+			enctype="multipart/form-data">
 
 			<h2>Add Car Information</h2>
 			<table>
 				<tr>
-					<td><form:label path="company">Company</form:label></td>
+					<td><form:label path="company"><spring:message code="message.company" text="Default Text" /></form:label></td>
 					<td><form:input path="company" /></td>
 					<td><form:errors path="company" cssStyle="color:red;" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="model">Model</form:label></td>
+
+					<td><form:label path="model"><spring:message code="message.model" text="Default Text" /></form:label></td>
 					<td><form:input path="model" /></td>
 					<td><form:errors path="model" cssStyle="color:red;" /></td>
 				</tr>
@@ -95,8 +99,8 @@ div {
 				<tr>
 
 					<td><form:label path="image">Image</form:label></td>
-					<td><form:input type="file" path="tempImg"/></td>
-					
+					<td><form:input type="file" path="tempImg" /></td>
+
 				</tr>
 
 				<tr>
@@ -105,7 +109,7 @@ div {
 
 			</table>
 		</form:form>
-		</div>
+	</div>
 </body>
 </html>
 
