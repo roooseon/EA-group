@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
 @Configuration
@@ -19,18 +20,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	DataSource dataSource;
 	
+	@Autowired
+	private AuthenticationSuccessHandler successHandler;
+	
+	public SecurityConfig() {
+		//userService = new SecurityUserServices();
+		successHandler=new UrlHandler();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http 
 		.authorizeRequests()
-		.antMatchers("/customer/customerlist").hasRole("ADMIN")
+		.antMatchers("/customer/customers").hasRole("ADMIN")
 		.antMatchers("/customer/signup").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
 		.formLogin()
-		.loginPage("/login")
-		.successForwardUrl("/addcar")
+		.loginPage("/login").successHandler(successHandler)
+		/*successForwardUrl("/carlist")*/
 		.permitAll();
 
 	}

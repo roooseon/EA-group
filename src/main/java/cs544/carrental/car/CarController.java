@@ -135,9 +135,7 @@ public class CarController {
 		return view;
 	}
 	
-
-
-	@RequestMapping(value = "/carlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/carlist", method = RequestMethod.POST)
 	public String carList(Map<String, Object> model) {
 		model.put("car", carService.getAllCar());
 		return "carList";
@@ -158,10 +156,11 @@ public class CarController {
 		return "redirect:/carlist";
 	}
 	
-	@RequestMapping(value ="/signup", method = RequestMethod.GET)
+	@RequestMapping(value ="/signupcar", method = RequestMethod.GET)
 	public String signUp(){
 		return "signup";
 	}
+	
 	
 	
 	

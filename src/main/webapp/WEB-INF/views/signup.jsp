@@ -12,13 +12,15 @@
 </head>
 <body>
     <div align="center">
+    <br /> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali ma Januhos</a><br />
         <form:form action="/customer/signup" modelAttribute="customer" method="post">
             <table border="0">
                 <tr>
                     <td colspan="2" align="center"><h2>USER - REGISTRATION</h2></td>
                 </tr>
                 <tr>
-                    <td>Name:</td>
+                    <!-- <td>Name:</td> -->
+                    <td><spring:message code="message.name" text="Default Text" /></td>
                     <td><form:input path="name" /></td>
                     <td><form:errors path="name" cssStyle="color:red;"/><td>
                     
@@ -37,7 +39,8 @@
                 </tr>
                 
                 <tr>
-                    <td>Country</td>
+                    <!-- <td>Country</td> -->
+                    <td><spring:message code="message.country" text="Default Text" /></td>
                     <td><form:input path="address.country" /></td>
                     <td><form:errors path="address.country" cssStyle="color:red;"/><td>
                 </tr>
