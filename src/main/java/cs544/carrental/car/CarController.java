@@ -1,22 +1,25 @@
 package cs544.carrental.car;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import cs544.carrental.domain.Car;
@@ -28,21 +31,112 @@ public class CarController {
 	@Autowired
 	CarService carService;
 
-	@RequestMapping(value = "/car", method = RequestMethod.GET)
-	public ModelAndView car() {
-		return new ModelAndView("car", "command", new Car());
-	}	
-
+	@Autowired
+	ServletContext servletContext;
 	
-	@RequestMapping(value = "/addcar", method = RequestMethod.POST)
-	public String addCar(@ModelAttribute("SpringWeb") Car car, ModelMap model) {
-		
-		//model.addAttribute("model", car.getModel());
-		carService.addCar(car);
-		
-		return "redirect:/carlist";
+	@RequestMapping(value ="/addcar", method = RequestMethod.GET)
+	public String addCar(@ModelAttribute("car") Car car){
+	return "addCar";
 	}
 	
+	@RequestMapping(value = "/addcar", method = RequestMethod.POST)
+	public String add(@Valid Car car, BindingResult result){		
+		String view = "redirect:/carlist";
+		
+		MultipartFile carImage = car.getTempImg();
+		String rootDirectory = servletContext.getRealPath("/"); 
+			
+		//carService.addCar(car);
+		
+		/*try {
+			carImage.transferTo(new File(rootDirectory+"\\images\\" + car.getId() + ".jpg"));
+		} catch (IllegalStateException e1) {
+			
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			
+			e1.printStackTrace();
+		}
+		try {
+			car.setImage(car.getTempImg().getBytes());
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		*/
+		
+			if(!result.hasErrors()) {
+				Car savedCar = carService.addCar(car);
+				System.out.println(savedCar.getId());
+				System.out.println("-------------------------");
+				System.out.println("-------------------------");
+				
+				try {
+					carImage.transferTo(new File(rootDirectory+"\\images\\" + savedCar.getId() + ".jpg"));
+				} catch (IllegalStateException e1) {
+					
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				}
+				try {
+					car.setImage(car.getTempImg().getBytes());
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+			}
+		else{
+			view = "addCar";
+		}
+		return view;
+	}
+	
+	@RequestMapping(value = "/updatecar/{id}", method = RequestMethod.GET)
+	public String update(@PathVariable("id") int id, Model model){
+		model.addAttribute("car", carService.getCarById(id));
+		return "updateCar";
+	}
+	
+	@RequestMapping(value = "/updatecar/{id}", method = RequestMethod.POST)
+	public String updateCar(@Valid Car car, BindingResult result, @PathVariable("id") int id) {
+		car.setId(id);		
+		String view = "redirect:/cardetails/" + id;
+		
+		MultipartFile carImage = car.getTempImg();
+		String rootDirectory = servletContext.getRealPath("/"); 
+			
+		//carService.addCar(car);
+		
+		try {
+			carImage.transferTo(new File(rootDirectory+"\\images\\" + car.getId() + ".jpg"));
+		} catch (IllegalStateException e1) {
+			
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			
+			e1.printStackTrace();
+		}
+		try {
+			car.setImage(car.getTempImg().getBytes());
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		if(!result.hasErrors()) {
+			carService.addCar(car);
+		}
+		else{
+			view = "updateCar";
+		}
+		
+		return view;
+	}
+	
+
+
 	@RequestMapping(value = "/carlist", method = RequestMethod.GET)
 	public String carList(Map<String, Object> model) {
 		model.put("car", carService.getAllCar());
@@ -57,21 +151,12 @@ public class CarController {
 		return "carDetails";
 	}
 	
-	/*@RequestMapping(value = "/cardetails/{id}", method = RequestMethod.POST)
-	public String car(@PathVariable int id, Model model) {
-		carService.getCarById(id);
-		return "carDetails";
-	}*/
-	
-	/*@RequestMapping(value = "/car/{id}", method = RequestMethod.POST)
-	public String car(@PathVariable int id, Model model) {
-		carService.deleteCar(id);	
-		String[] val = id.split(".");
-		System.out.println(val[0] +"-" + val[1]);
+	@RequestMapping("/deletecar/{id}")
+	public String removePerson(@PathVariable("id") int id) {
+		carService.deleteCar(id);
+		System.out.println("Delete function");
 		return "redirect:/carlist";
-	}*/
-	
-	
+	}
 	
 	@RequestMapping(value ="/signup", method = RequestMethod.GET)
 	public String signUp(){

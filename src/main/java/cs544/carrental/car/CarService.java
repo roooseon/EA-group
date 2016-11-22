@@ -19,8 +19,8 @@ public class CarService implements ICarService{
 	
 
 	@Override
-	public void addCar(Car car) {
-		cardao.save(car);
+	public Car addCar(Car car) {
+		return cardao.save(car);
 	}
 
 	@Override
