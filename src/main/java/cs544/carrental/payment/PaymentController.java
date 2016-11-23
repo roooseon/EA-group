@@ -67,9 +67,11 @@ public class PaymentController {
 		System.out.println(payment.getRent().getRentedDate());
 		
 		
+		
 		model.addAttribute("payment", payment);
 
 		payService.savePayment(payment);
+		
 		//	ModelAndView model1 = new ModelAndView("ThankYou");
 		return  "ThankYou";
 

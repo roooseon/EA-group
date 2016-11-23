@@ -21,15 +21,18 @@ public class Payment {
 	@Enumerated(EnumType.STRING)
 	private CCType cctype;
 	
-	//@NotNull
+	
+
+	@NotNull
 	//@Size(min=9 , max = 15 , message = "Must be between 9 to 15 characters")
 	private long creditCardNo;
-	//@NotNull
-	//@Size(min=3 , max=3 , message ="Must be 3 characters only")
+	@NotNull
+	//@Size(min=3 , max=3)
 	private int cVV;
 	
 	@OneToOne
 	private Rent rent;
+	
 
 
 	public CCType getCctype() {
@@ -72,6 +75,7 @@ public class Payment {
 	public void setRent(Rent rent) {
 		this.rent = rent;
 	}
+	
 	
   
 
