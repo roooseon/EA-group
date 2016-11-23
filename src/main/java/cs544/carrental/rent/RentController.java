@@ -70,9 +70,10 @@ public class RentController {
 		
 		
 		model.addAttribute("rent", rent);
-		
-				rentService.saveRent(rent);
-		
+
+		rentService.saveRent(rent);
+
+	
 		session.setAttribute("rent", rent);
 		
 		/*model.addAttribute("allRent", rentService.getAllRent());
