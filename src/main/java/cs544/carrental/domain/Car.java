@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -31,11 +32,10 @@ public class Car {
 	private int builtYear;
 	@NotEmpty
 	private String number;
-	@NotNull
+	@Min(value=1)
 	private int seat;
 	
-	@NotNull(message = "must be number")
-	@Value("#{new Integer.parseInt('${dailyRent}')}")
+	@Min(value=1)
 	private int dailyRent;
 
 	@Lob

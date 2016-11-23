@@ -43,11 +43,13 @@ body {
 					<td>${car.builtYear}</td>
 					<td>${car.dailyRent}</td>
 
-					<td><img height="30px" width="30px" src="../images/${car.id}.jpg"/> </td>
+					<td><img height="30px" width="30px"
+						src="../images/${car.id}.jpg" /></td>
 
 					<td><form action="cardetailsuser/${car.id}">
 							<input type="submit" value="View Details" />
 						</form></td>
+
 
 					<%-- <td><form action="car/${car.id}" method="post">
 				<input type="submit" name="rent" value= "rent" /> 
@@ -55,17 +57,27 @@ body {
 				</tr>
 			</c:forEach>
 
+
+
 		</table>
 
 
+	</div>
 
-		<!-- 		<br /> <a -->
-		<%-- 			href="<spring:url value="/product/delete?id=${car.id}" /> "> --%>
-		<!-- 			</span> Delete -->
-		<!-- 		</a> <br /> <a -->
-		<%-- 			href="<spring:url value="/product/update?id=${car.id}" /> "> --%>
-		<!-- 			</span> Update -->
-		<!-- 		</a> -->
+	<div>
+		<form action="/sedan">
+			<input type="submit" value="Show Sedan Cars" />
+		</form>
+		<form action="/hatchback">
+			<input type="submit" value="Hatchback Cars" />
+		</form>
+		<form action="/coupe">
+			<input type="submit" value="Show Coupe Cars" />
+		</form>
+		
+		<form action="/carlistuser">
+			<input type="submit" value="Show All Cars" />
+		</form>
 	</div>
 
 

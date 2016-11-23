@@ -10,4 +10,7 @@ public interface ICarService {
 	public Car getCarById(int id);
 	public List<Car> getAllCar();
 	public List<Car> getAvailableCars();
+	public List<Car> getSedanCars();
+	public List<Car> getHatchbackCars();
+	public List<Car> getCoupeCars();
 }
