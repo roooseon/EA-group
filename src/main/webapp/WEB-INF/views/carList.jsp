@@ -67,6 +67,8 @@ body {
 					<td><a href = " <c:url value="/customer/customers" />" >View Customers List</a></td>
 			</tr>
 		</table>
+		
+		
 	</div>
 
 

@@ -45,17 +45,21 @@ body {
 					<td>${car.builtYear}</td>
 					<td>${car.dailyRent}</td>
 
-					<td><img height="30px" width="30px" src="../images/${car.id}.jpg"/> </td>
+					<td><img height="30px" width="30px"
+						src="../images/${car.id}.jpg" /></td>
 
 					<td><form action="cardetailsuser/${car.id}">
 							<input type="submit" value="View Details" />
 						</form></td>
+
 
 					<%-- <td><form action="car/${car.id}" method="post">
 				<input type="submit" name="rent" value= "rent" /> 
 			</form></td> --%>
 				</tr>
 			</c:forEach>
+
+
 
 		</table>
 		<form action="/mycars"><input type="submit" value="My rented Cars"/> </form>
@@ -86,12 +90,37 @@ body {
 
 					<td><img height="30px" width="30px" src="../images/${car.id}.jpg"/> </td>
 					</tr></c:forEach></table></c:if>
-		<form action="/customer/viewmine">
-		<input type="submit" value="View my credentials"/>
-		</form>
+		
+
 	</div>
 
+	<div>
+		<table>
+		
+		<tr>
+		<td><form action="/carlistuser/sedan">
+			<input type="submit" value="Show Sedan Cars" />
+		</form></td>
+		<td><form action="/carlistuser/hatchback">
+			<input type="submit" value="Hatchback Cars" />
+		</form></td>
+		<td><form action="/carlistuser/coupe">
+			<input type="submit" value="Show Coupe Cars" />
+		</form></td>
+		
+		<td><form action="/carlistuser">
+			<input type="submit" value="Show All Cars" />
+		</form>
+		</td>
+		</tr>
+		</table>
+	</div>
 
+<div>
+<form action="/customer/viewmine">
+		<input type="submit" value="View my credentials"/>
+		</form>
+</div>
 
 </body>
 </html>

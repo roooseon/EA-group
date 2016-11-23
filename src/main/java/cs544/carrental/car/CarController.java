@@ -29,6 +29,8 @@ import cs544.carrental.domain.Car;
 import cs544.carrental.domain.CarType;
 import cs544.carrental.domain.Customer;
 
+import cs544.carrental.domain.Status;
+
 @Controller
 public class CarController {
 
@@ -127,6 +129,17 @@ public class CarController {
 		return view;
 	}
 	
+	
+	@RequestMapping(value = "/updatecar/{id}/updatestatus", method = RequestMethod.POST)
+	
+	public String updateCarStatus(@PathVariable("id") int id, String status) {
+		Car car = carService.getCarById(id);
+		car.setStatus(Status.valueOf(status.toUpperCase()));
+		carService.addCar(car);
+		return "redirect:/carlist";
+	}
+	
+	
 
 	@RequestMapping(value = "/carlist", method = {RequestMethod.GET, RequestMethod.POST})
 	public String carList(Map<String, Object> model) {
@@ -141,7 +154,26 @@ public class CarController {
 		m.addAttribute("user",c.getName());
 		model.put("car", carService.getAvailableCars());
 		return "carListUser";
-	}	
+	}
+	
+	@RequestMapping(value = "/carlistuser/{cartype}", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserSedan(Map<String, Object> model, @PathVariable ("cartype") String cartype) {
+		model.put("car", carService.getSedanCars(CarType.valueOf(cartype.toUpperCase())));
+		return "carListUser";
+	}
+	
+	@RequestMapping(value = "/hatchback", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserHatchBack(Map<String, Object> model) {
+		model.put("car", carService.getHatchbackCars());
+		return "carListUser";
+	}
+	
+	@RequestMapping(value = "/coupe", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserCoupe(Map<String, Object> model) {
+		model.put("car", carService.getCoupeCars());
+		return "carListUser";
+	}
+	
 	
 	@RequestMapping("/mycars")
 	public String showMyCars(Model model,Principal p){

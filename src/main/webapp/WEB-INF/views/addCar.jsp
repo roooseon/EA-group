@@ -14,8 +14,8 @@ body {
 
 form {
 	width: 50%;
-	margin-right: 10%;
-	margin-left: 40%;
+	margin-right: 15%;
+	margin-left: 35%;
 }
 
 input[type=submit]:hover {
@@ -35,9 +35,8 @@ div {
 	 -->	
 		<form:form commandName="car" method="POST" action="addcar"
 			enctype="multipart/form-data">
-			
+			<h2> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali</a></h2>
 			<h2>Add Car Information</h2>
-			<h3></h1><br /> Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali</a><br /></h3>
 			<table>
 				<tr>
 					<td><form:label path="company"><spring:message code="message.company" text="Default Text" /></form:label></td>
