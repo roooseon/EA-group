@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cs544.carrental.domain.Car;
 import cs544.carrental.domain.CarType;
+import cs544.carrental.domain.Status;
 
 @Controller
 public class CarController {
@@ -119,6 +120,17 @@ public class CarController {
 		return view;
 	}
 	
+	
+	@RequestMapping(value = "/updatecar/{id}/updatestatus", method = RequestMethod.POST)
+	
+	public String updateCarStatus(@PathVariable("id") int id, String status) {
+		Car car = carService.getCarById(id);
+		car.setStatus(Status.valueOf(status.toUpperCase()));
+		carService.addCar(car);
+		return "redirect:/carlist";
+	}
+	
+	
 
 	@RequestMapping(value = "/carlist", method = {RequestMethod.GET, RequestMethod.POST})
 	public String carList(Map<String, Object> model) {
@@ -132,9 +144,9 @@ public class CarController {
 		return "carListUser";
 	}
 	
-	@RequestMapping(value = "/sedan", method = {RequestMethod.GET, RequestMethod.POST})
-	public String carListUserSedan(Map<String, Object> model) {
-		model.put("car", carService.getSedanCars());
+	@RequestMapping(value = "/carlistuser/{cartype}", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserSedan(Map<String, Object> model, @PathVariable ("cartype") String cartype) {
+		model.put("car", carService.getSedanCars(CarType.valueOf(cartype.toUpperCase())));
 		return "carListUser";
 	}
 	

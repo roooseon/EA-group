@@ -45,6 +45,7 @@ public class CarService implements ICarService{
 		return (List<Car>) cardao.findAll();
 	}
 	
+	
 	@Override
 	public List<Car>getAvailableCars(){
 		List<Car> allCars =  (List<Car>) cardao.findAll();
@@ -65,7 +66,7 @@ public class CarService implements ICarService{
 		return avaialbleCars ;
 	}
 
-	@Override
+	/*@Override
 	public List<Car> getSedanCars() {
 		
 		List<Car> allCars =  (List<Car>) cardao.findAll();
@@ -77,9 +78,18 @@ public class CarService implements ICarService{
 				sedanCars.add(c);
 			}
 		}
+	
 		return sedanCars ;
+	}*/
+	
+	@Override
+	public List<Car> getSedanCars(CarType type) {
+		List<Car> sedanCars = (List<Car>) cardao.getCarByType(type);
+		return sedanCars;
 	}
 
+
+	
 	@Override
 	public List<Car> getHatchbackCars() {
 		List<Car> allCars =  (List<Car>) cardao.findAll();
@@ -105,5 +115,9 @@ public class CarService implements ICarService{
 		}
 		return coupeCars ;
 	}
+
+	
+
+	
 
 }

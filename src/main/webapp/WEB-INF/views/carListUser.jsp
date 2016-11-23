@@ -65,19 +65,25 @@ body {
 	</div>
 
 	<div>
-		<form action="/sedan">
-			<input type="submit" value="Show Sedan Cars" />
-		</form>
-		<form action="/hatchback">
-			<input type="submit" value="Hatchback Cars" />
-		</form>
-		<form action="/coupe">
-			<input type="submit" value="Show Coupe Cars" />
-		</form>
+		<table>
 		
-		<form action="/carlistuser">
+		<tr>
+		<td><form action="/carlistuser/sedan">
+			<input type="submit" value="Show Sedan Cars" />
+		</form></td>
+		<td><form action="/carlistuser/hatchback">
+			<input type="submit" value="Hatchback Cars" />
+		</form></td>
+		<td><form action="/carlistuser/coupe">
+			<input type="submit" value="Show Coupe Cars" />
+		</form></td>
+		
+		<td><form action="/carlistuser">
 			<input type="submit" value="Show All Cars" />
 		</form>
+		</td>
+		</tr>
+		</table>
 	</div>
 
 
