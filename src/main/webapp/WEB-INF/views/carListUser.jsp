@@ -18,8 +18,9 @@ body {
 </head>
 <body>
 	<div style="border: 2px solid blue; float: left; margin: 5px">
-		<h1>Welcome ${user}</h1><br/>
-		<h1>All Cars list</h1>
+<h1>Welcome ${user}</h1><br/>
+
+		<h1>Available Cars list</h1>
 		<table>
 			<tr>
 				<th>Company</th>
@@ -57,16 +58,37 @@ body {
 			</c:forEach>
 
 		</table>
+		<form action="/mycars"><input type="submit" value="My rented Cars"/> </form>
+		 <c:if test="${cr!=null}"> 
+		<table>
+			<tr>
+				<th>Company</th>
+				<th>Model</th>
+				<th>Status</th>
+				<th>Type</th>
+				<th>Plate Number</th>
+				<th>Seat</th>
+				<th>Manufactured year</th>
+				<th>Daily Rent</th>
+				<th>Image</th>
+			</tr>
+			<c:forEach items="${car}" var="car">
+				<tr>
 
+					<td>${car.company}</td>
+					<td>${car.model}</td>
+					<td>${car.status }</td>
+					<td>${car.carType}</td>
+					<td>${car.number}</td>
+					<td>${car.seat}</td>
+					<td>${car.builtYear}</td>
+					<td>${car.dailyRent}</td>
 
-
-		<!-- 		<br /> <a -->
-		<%-- 			href="<spring:url value="/product/delete?id=${car.id}" /> "> --%>
-		<!-- 			</span> Delete -->
-		<!-- 		</a> <br /> <a -->
-		<%-- 			href="<spring:url value="/product/update?id=${car.id}" /> "> --%>
-		<!-- 			</span> Update -->
-		<!-- 		</a> -->
+					<td><img height="30px" width="30px" src="../images/${car.id}.jpg"/> </td>
+					</tr></c:forEach></table></c:if>
+		<form action="/customer/viewmine">
+		<input type="submit" value="View my credentials"/>
+		</form>
 	</div>
 
 

@@ -13,6 +13,15 @@
 	
 	<div align="center">
         <form action="/login" method="post">
+        
+       <div style="color:red"> ${error}</div>
+       <%--  <c:if test="${pa.error}">
+					<div class="alert alert-danger">
+						<spring:message code="AbstractUserDetailsAuthenticationProvider.badCredentials"/><br />
+						login failed
+					</div>
+		</c:if>
+         --%>
             <table border="0">
                 <tr>
                 <c:if test="${message!=null}"><td colspan="2" align="center"><h2>${message }</h2></td></c:if>

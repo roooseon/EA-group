@@ -46,7 +46,10 @@
 					</form>
 				</tr>
 			</c:forEach>
+			
 		</table>
+		<td><a href = " <c:url value="/carlist" />" >See Car List</a></td>
 	</div>
+	
 </body>
 </html>

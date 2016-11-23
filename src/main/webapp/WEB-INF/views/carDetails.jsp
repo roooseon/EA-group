@@ -70,9 +70,9 @@ div {
 	
 		
 
-		<table style="border: 0px solid black;">
+		<table >
 			<tr>
-				<td><form action="/deletecar/${car.id}">
+				<td ><form action="/deletecar/${car.id}">
 						<input type="submit" value="Delete" />
 					</form></td>
 

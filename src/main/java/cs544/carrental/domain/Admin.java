@@ -17,8 +17,6 @@ public class Admin {
 	private String password;
 	private String role="admin";
 	
-	@OneToMany (mappedBy="admin")
-	private List<Car> cars;
 
 	public int getId() {
 		return id;
@@ -52,13 +50,6 @@ public class Admin {
 		this.password = password;
 	}
 
-	public List<Car> getCars() {
-		return cars;
-	}
-
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
-	}
 	
 	
 }

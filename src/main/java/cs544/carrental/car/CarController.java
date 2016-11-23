@@ -3,6 +3,7 @@ package cs544.carrental.car;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -54,6 +55,7 @@ public class CarController {
 		
 		
 			if(!result.hasErrors()) {
+				
 				Car savedCar = carService.addCar(car);
 				model.addAttribute("message",new String("Car added successfully"));	
 				System.out.println(savedCar.getId());
@@ -79,7 +81,7 @@ public class CarController {
 		else{
 			view = "addCar";
 		}
-			
+
 		return view;
 	}
 	
@@ -141,6 +143,18 @@ public class CarController {
 		return "carListUser";
 	}	
 	
+	@RequestMapping("/mycars")
+	public String showMyCars(Model model,Principal p){
+		Customer c=customerService.getCustomerByUserName(p.getName());
+		Car cr=c.getCar();
+		//System.out.println("#############"+cr);
+		System.out.println(cr.toString());
+		model.addAttribute("cr",cr);
+		model.addAttribute("car",carService.getAvailableCars());
+		model.addAttribute("user",c.getName());
+		return "carListUser";
+	}
+	
 /*	@RequestMapping(value = "/carlist", method = RequestMethod.POST)
 	public String carListPOST(Map<String, Object> model) {
 		model.put("car", carService.getAllCar());
@@ -167,8 +181,10 @@ public class CarController {
 	public String removePerson(@PathVariable("id") int id) {
 		carService.deleteCar(id);
 		System.out.println("Delete function");
-		return "redirect:/carlist";
+		return "redirect:/carlistuser";
 	}
+	
+	
 	
 	/*@RequestMapping(value ="/signupcar", method = RequestMethod.GET)
 	public String signUp(){

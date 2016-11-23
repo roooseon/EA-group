@@ -1,11 +1,13 @@
 package cs544.carrental.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
@@ -33,6 +35,13 @@ public class Customer {
 	private Address address;
 	private String role="user";
 
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", password=" + password + ", name=" + name + ", username=" + username
+				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + ", role=" + role
+				+ ", car=" + car + ", confirmPassword=" + confirmPassword + "]";
+	}
+
 	public String getRole() {
 		return role;
 	}
@@ -49,8 +58,8 @@ public class Customer {
 		this.confirmPassword = confirmPassword;
 	}
 
-	@OneToMany(mappedBy = "customer")
-	private List<Car> cars;
+	@OneToOne
+	private Car car;
 
 	@Transient
 	private String confirmPassword;
@@ -79,12 +88,13 @@ public class Customer {
 		this.address = address;
 	}
 
-	public List<Car> getCars() {
-		return cars;
+
+	public Car getCar() {
+		return car;
 	}
 
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
+	public void setCar(Car car) {
+		this.car = car;
 	}
 
 	public int getId() {
