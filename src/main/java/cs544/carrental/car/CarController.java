@@ -48,6 +48,7 @@ public class CarController {
 		
 		
 			if(!result.hasErrors()) {
+				model.addAttribute("message", new String("Car added successfully"));
 				Car savedCar = carService.addCar(car);
 				System.out.println(savedCar.getId());
 				System.out.println("-------------------------");
@@ -72,7 +73,7 @@ public class CarController {
 		else{
 			view = "addCar";
 		}
-			model.addAttribute("message",new String("Car added successfully"));	
+				
 		return view;
 	}
 	
