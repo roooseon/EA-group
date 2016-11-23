@@ -1,5 +1,7 @@
 package cs544.carrental.domain;
 
+import java.util.Arrays;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -29,13 +32,19 @@ public class Car {
 	private String model;
 	@Range(min = 1970, max = 2016)
 	private int builtYear;
+	@Override
+	public String toString() {
+		return "Car [id=" + id + ", company=" + company + ", model=" + model + ", builtYear=" + builtYear + ", number="
+				+ number + ", seat=" + seat + ", dailyRent=" + dailyRent + ", image=" + Arrays.toString(image)
+				+ ", tempImg=" + tempImg + ", status=" + status + ", carType=" + carType + "]";
+	}
+
 	@NotEmpty
 	private String number;
-	@NotNull
+	@Min(value=1)
 	private int seat;
 	
-	@NotNull(message = "must be number")
-	@Value("#{new Integer.parseInt('${dailyRent}')}")
+	@Min(value=1)
 	private int dailyRent;
 
 	@Lob
@@ -51,13 +60,6 @@ public class Car {
 	public void setTempImg(MultipartFile tempImg) {
 		this.tempImg = tempImg;
 	}
-
-	@ManyToOne
-	private Admin admin;
-
-	@ManyToOne
-	private Customer customer;
-
 	/*@OneToOne(mappedBy = "car")
 	private Rent rent;*/
 	
@@ -165,4 +167,5 @@ public class Car {
 	public void setDailyRent(int dailyRent) {
 		this.dailyRent = dailyRent;
 	}
+
 }

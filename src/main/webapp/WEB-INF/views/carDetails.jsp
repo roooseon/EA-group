@@ -70,15 +70,20 @@ div {
 	
 		
 
-		<table style="border: 0px solid black;">
+		<table >
 			<tr>
-				<td><form action="/deletecar/${car.id}">
+				<td ><form action="/deletecar/${car.id}">
 						<input type="submit" value="Delete" />
 					</form></td>
 
 
 				<td><form action="/updatecar/${car.id}">
 						<input type="submit" value="Update" />
+					</form></td>
+					
+					<td><form action="/updatecar/${car.id}/updatestatus" method = "post">
+					<input type = "hidden" value = "Available" name = "status"/>
+						<input type="submit" value="Change status to Available" />
 					</form></td>
 
 				<%-- <td><form action="/rentID/${car.id}" method = "GET" >

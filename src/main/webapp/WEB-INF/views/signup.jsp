@@ -27,13 +27,13 @@
                 </tr>
                 
                 <tr>
-                    <td>Email:</td>
+                    <td><spring:message code="message.email" text="Default Text" /></td>
                     <td><form:input path="email" /></td>
                     <td><form:errors path="email" cssStyle="color:red;"/><td>
                 </tr>
                 
                 <tr>
-                    <td>Phone Number:</td>
+                    <td><spring:message code="message.phone" text="Default Text" /></td>
                     <td><form:input path="phoneNumber" /></td>
                     <td><form:errors path="phoneNumber" cssStyle="color:red;"/><td>
                 </tr>
@@ -46,35 +46,35 @@
                 </tr>
                 
                 <tr>
-                    <td>State:</td>
+                    <td><spring:message code="message.state" text="Default Text" /></td>
                     <td><form:input path="address.state" /></td>
                     <td><form:errors path="address.state" cssStyle="color:red;"/><td>
                 </tr>
                 
                 <tr>
-                    <td>City:</td>
+                    <td><spring:message code="message.city" text="Default Text" /></td>
                     <td><form:input path="address.city" /></td>
                 </tr>
                 
                 <tr>
-                    <td>Zip:</td>
+                    <td><spring:message code="message.zip" text="Default Text" /></td>
                     <td><form:input path="address.zip" /></td>
                 </tr>
                 
                  <tr>
-                    <td>UserName</td>
+                    <td><spring:message code="message.username" text="Default Text" /></td>
                     <td><form:input path="username" /></td>
                     <td><form:errors path="username" cssStyle="color:red;"/><td>
                 </tr>
                 
                 <tr>
-                    <td>Password:</td>
+                    <td><spring:message code="message.password" text="Default Text" /></td>
                     <td><form:password path="password" /></td>
                     <td><form:errors path="password" cssStyle="color:red;"/><td>
                 </tr>
                 
                 <tr>
-                    <td>Confirm Password:</td>
+                    <td><spring:message code="message.confirm" text="Default Text" /></td>
                     <td><form:password path="confirmPassword" /></td>
                    <td> <c:if test="${message!=null }"><span style="color:red">"${message }"</span></c:if></td>
                 </tr>

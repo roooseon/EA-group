@@ -1,5 +1,7 @@
 package cs544.carrental.payment;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import cs544.carrental.car.CarService;
+import cs544.carrental.customer.CustomerServiceImpl;
 import cs544.carrental.domain.Car;
+import cs544.carrental.domain.Customer;
 import cs544.carrental.domain.Payment;
 import cs544.carrental.domain.Rent;
 import cs544.carrental.domain.Status;
@@ -30,6 +34,9 @@ public class PaymentController {
 	@Autowired
 	CarService carService;
 	
+	@Autowired
+	CustomerServiceImpl customerservice;
+	
 	
 	/*@RequestMapping(value = "/payment")
 	public String Validrent( @ModelAttribute("payment1") Payment payment  ) {
@@ -40,7 +47,7 @@ public class PaymentController {
 	}*/
 	
 	@RequestMapping(value = "/payment", method = RequestMethod.POST)
-	public String rentDetail(@ModelAttribute Payment payment , Rent rent , Model model,HttpSession session){
+	public String rentDetail(@ModelAttribute Payment payment , Rent rent , Model model,HttpSession session,Principal p){
 		
 		/*if(result.hasErrors()){
 			
@@ -69,9 +76,11 @@ public class PaymentController {
 		
 		
 		model.addAttribute("payment", payment);
+		
 
 		payService.savePayment(payment);
 		
+
 		//	ModelAndView model1 = new ModelAndView("ThankYou");
 		return  "ThankYou";
 
@@ -84,13 +93,18 @@ public class PaymentController {
 	}*/
 	
 	@RequestMapping(value = "/updatecarstatus/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable("id") int id, Model model){
+	public String update(@PathVariable("id") int id, Model model,Principal p){
 		Car car = (Car)carService.getCarById(id);
 		car.setStatus(Status.RENTED);
+		Customer c= customerservice.getCustomerByUserName(p.getName());
 		
+		c.setCar(car);
+		customerservice.addCustomer(c);
 		carService.addCar(car);
+		//Customer c= customerservice.getCustomerByUserName(p.getName());
+		System.out.println(c);
 		
-		
+		System.out.println("***************"+car.getCompany());
 		return "redirect:/carlistuser";
 	}
 	

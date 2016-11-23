@@ -1,6 +1,7 @@
 package cs544.carrental.customer;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cs544.carrental.domain.Car;
 import cs544.carrental.domain.Customer;
 @Controller
 @RequestMapping("/customer")
@@ -65,5 +67,22 @@ public class CustomerController {
 		return "customerlist";
 		
 	}
+	
+	@RequestMapping("/viewmine")
+	public String viewCredentials(Model model,Principal p){
+		Customer c=customerservice.getCustomerByUserName(p.getName());
+		model.addAttribute("customer",c);
+		System.out.println("%%%%%%%%%%%%%%%%%%In view mine "+c.getName());
+		return "viewmine";
+		
+	}
+	
+	/*@RequestMapping("/mycars")
+	public String showMyCars(Model model,Principal p){
+		Customer c=customerservice.getCustomerByUserName(p.getName());
+		Car car=c.getCar();
+		model.addAttribute("car",car);
+		return "redirect:/carlistuser";	
+	}*/
 	
 }

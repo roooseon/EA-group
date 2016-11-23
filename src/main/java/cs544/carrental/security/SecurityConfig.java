@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.csrf()
 		.disable()
 		.authorizeRequests()
-		.antMatchers("/customer/customers","/carlist", "/cardetails","/addcar", "updatecar").hasRole("ADMIN")
+		.antMatchers("/customer/customers","/carlist", "/cardetails","/addcar", "/updatecar").hasRole("ADMIN")
 //		.antMatchers("/carlist").hasRole("")
 		.antMatchers("/customer/signup").permitAll()
 		.anyRequest()
@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin()
 		.loginPage("/login").successHandler(successHandler)
+		.failureUrl("/loginfailed")
 		.permitAll();
 
 	}

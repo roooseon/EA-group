@@ -2,6 +2,8 @@ package cs544.carrental.car;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -22,14 +24,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import cs544.carrental.customer.CustomerServiceImpl;
 import cs544.carrental.domain.Car;
 import cs544.carrental.domain.CarType;
+import cs544.carrental.domain.Customer;
+
+import cs544.carrental.domain.Status;
 
 @Controller
 public class CarController {
 
 	@Autowired
 	CarService carService;
+	
+	@Autowired
+	CustomerServiceImpl customerService;
 
 	@Autowired
 	ServletContext servletContext;
@@ -48,7 +57,9 @@ public class CarController {
 		
 		
 			if(!result.hasErrors()) {
+				
 				Car savedCar = carService.addCar(car);
+				model.addAttribute("message",new String("Car added successfully"));	
 				System.out.println(savedCar.getId());
 				System.out.println("-------------------------");
 				System.out.println("-------------------------");
@@ -72,7 +83,7 @@ public class CarController {
 		else{
 			view = "addCar";
 		}
-			model.addAttribute("message",new String("Car added successfully"));	
+
 		return view;
 	}
 	
@@ -118,6 +129,17 @@ public class CarController {
 		return view;
 	}
 	
+	
+	@RequestMapping(value = "/updatecar/{id}/updatestatus", method = RequestMethod.POST)
+	
+	public String updateCarStatus(@PathVariable("id") int id, String status) {
+		Car car = carService.getCarById(id);
+		car.setStatus(Status.valueOf(status.toUpperCase()));
+		carService.addCar(car);
+		return "redirect:/carlist";
+	}
+	
+	
 
 	@RequestMapping(value = "/carlist", method = {RequestMethod.GET, RequestMethod.POST})
 	public String carList(Map<String, Object> model) {
@@ -126,10 +148,44 @@ public class CarController {
 	}	
 	
 	@RequestMapping(value = "/carlistuser", method = {RequestMethod.GET, RequestMethod.POST})
-	public String carListUser(Map<String, Object> model) {
+	public String carListUser(Map<String, Object> model,Principal p,Model m) {
+		System.out.println("@@@@@@@@@"+p.getName()+"@@@@@@@@");
+		Customer c=customerService.getCustomerByUserName(p.getName());
+		m.addAttribute("user",c.getName());
 		model.put("car", carService.getAvailableCars());
 		return "carListUser";
-	}	
+	}
+	
+	@RequestMapping(value = "/carlistuser/{cartype}", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserSedan(Map<String, Object> model, @PathVariable ("cartype") String cartype) {
+		model.put("car", carService.getSedanCars(CarType.valueOf(cartype.toUpperCase())));
+		return "carListUser";
+	}
+	
+	@RequestMapping(value = "/hatchback", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserHatchBack(Map<String, Object> model) {
+		model.put("car", carService.getHatchbackCars());
+		return "carListUser";
+	}
+	
+	@RequestMapping(value = "/coupe", method = {RequestMethod.GET, RequestMethod.POST})
+	public String carListUserCoupe(Map<String, Object> model) {
+		model.put("car", carService.getCoupeCars());
+		return "carListUser";
+	}
+	
+	
+	@RequestMapping("/mycars")
+	public String showMyCars(Model model,Principal p){
+		Customer c=customerService.getCustomerByUserName(p.getName());
+		Car cr=c.getCar();
+		//System.out.println("#############"+cr);
+		System.out.println(cr.toString());
+		model.addAttribute("cr",cr);
+		model.addAttribute("car",carService.getAvailableCars());
+		model.addAttribute("user",c.getName());
+		return "carListUser";
+	}
 	
 /*	@RequestMapping(value = "/carlist", method = RequestMethod.POST)
 	public String carListPOST(Map<String, Object> model) {
@@ -157,8 +213,10 @@ public class CarController {
 	public String removePerson(@PathVariable("id") int id) {
 		carService.deleteCar(id);
 		System.out.println("Delete function");
-		return "redirect:/carlist";
+		return "redirect:/carlistuser";
 	}
+	
+	
 	
 	/*@RequestMapping(value ="/signupcar", method = RequestMethod.GET)
 	public String signUp(){

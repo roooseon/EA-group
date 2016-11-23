@@ -4,13 +4,17 @@ package cs544.carrental.customer;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import cs544.carrental.domain.Customer;
 import cs544.carrental.repositories.CustomerDAO;
 
 @Service
+@Transactional
 public class CustomerServiceImpl implements ICustomerService{
 	
 	@Autowired
@@ -42,6 +46,12 @@ public class CustomerServiceImpl implements ICustomerService{
 	@Override
 	public void deleteCustomer(int id) {
 		customerDAO.delete(id);
+		
+	}
+
+	@Override
+	public Customer getCustomerByUserName(String userName) {
+		return customerDAO.findByUsername(userName);
 		
 	}
 	
