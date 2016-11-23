@@ -9,10 +9,14 @@
 <body>
 
 <h2>Thank You!!!</h2>
+		<form method="GET" action="/updatecarstatus/${car.id}">
+			<input type = "submit" value = "Home" />
+			</form>
 
-<table>
+<div style="float:left">
+<table frame="box">
 			<tr><td>Company:</td><td>${payment.rent.car.company}</td></tr>
-			<tr><td>Status : </td><td>${payment.rent.car.status }</td></tr>
+			<%-- <tr><td>Status : </td><td>${payment.rent.car.status }</td></tr> --%>
 			<tr><td>Type   : </td><td>${payment.rent.car.carType}</td></tr>
 			<tr><td>Plate Number: </td><td>${payment.rent.car.number}</td>
 			<tr><td>Model : </td><td>${payment.rent.car.model}</td></tr>
@@ -21,6 +25,9 @@
 			<tr><td>No of Seats: </td><td>${payment.rent.car.seat}</td></tr>
 			<tr><td>ReturnedDAte: </td><td>${payment.rent.rentedDate }</td></tr>
 			<tr><td>Payment Per Day: </td><td>${payment.rent.returnedDate}</td></tr>
+			<tr></tr>
+			<tr><td>Rented Days: </td><td>${payment.rent.totalNoOfDays}</td></tr>
+			<tr><td>Total Charge: </td><td>${payment.rent.totalAmt}</td></tr>
 			
 			<tr><td>CreditCard Type: ${payment.cctype}</td></tr>
 			<tr><td>ReturnedDAte: ${payment.rent.rentedDate }</td></tr>
@@ -30,12 +37,10 @@
 			
 		
 	</table>
+	</div>
+	<div><img height="auto" width="auto" src="../images/${payment.rent.car.id}.jpg"/> </div>
 	
-	<div><img height="100px" width="100px" src="../images/${car.id}.jpg"/> </div>
 	
-		<form method="GET" action="/updatecarstatus/${car.id}">
-			<input type = "submit" value = "Home" />
-			</form>
 
 
 

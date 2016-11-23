@@ -10,6 +10,7 @@ import javax.persistence.Id;
 //import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 
 //import cs544.carrental.domain.Car;
 
@@ -27,13 +28,18 @@ public class Rent {
 	private int rentId;
 	
 	
+	
 	//private double rentPerDay;
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
 	@Temporal(TemporalType.DATE)
+	@Future
 	private Date rentedDate;
 	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
+	@Future
 	private Date returnedDate;
+	
+	
 	
 	@OneToOne //(cascade=CascadeType.PERSIST , orphanRemoval = true)
 	private Car car;
@@ -41,14 +47,37 @@ public class Rent {
 /*	@OneToOne(mappedBy = "rent")
 	private Payment payment;
 	*/
+	
+	
+
+	private int totalNoOfDays;
+	private double totalAmt;
+	
+	
+		public Rent() {
+				
+			}
 
 
-
-
-
-	public Rent() {
-		
+	public int getTotalNoOfDays() {
+		return totalNoOfDays;
 	}
+
+	public void setTotalNoOfDays(int totalNoOfDays) {
+		this.totalNoOfDays = totalNoOfDays;
+	}
+
+	public double getTotalAmt() {
+		return totalAmt;
+	}
+
+	public void setTotalAmt(double totalAmt) {
+		this.totalAmt = totalAmt;
+	}
+
+
+
+	
 	
 	/*public Rent(double rentPerDay, Date rentedDate, Date returnedDate) {
 		

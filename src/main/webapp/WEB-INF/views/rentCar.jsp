@@ -9,13 +9,77 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Rent a Car</title>
+
+<script type="text/javascript">
+
+	window.onload = function() {
+		document.getElementById('errorMsgRent').innerHTML="";
+	};
+	
+	function validateForm() {
+		return Boolean(myFunctionClick());
+		//alert(Boolean(myFunctionClick()));
+	}
+	
+	function myFunctionClick() {
+		document.getElementById('errorMsgRent').innerHTML="";
+		document.getElementById('errorMsgRented').innerHTML="";
+		var today =new Date();
+		var startDate = document.getElementById('rentedDate').value;
+				
+				var isTrue =1;
+				// validation for from date
+				var startDateParse =parseDMY(startDate);
+				if(isNaN (startDateParse)){
+					document.getElementById('errorMsgRent').innerHTML="Please enter valid date in YYYY/MM/DD format";
+					isTrue=0;
+				}
+				if(today>parseDMY(startDate)){
+					document.getElementById('errorMsgRent').innerHTML="Date must be greater than today";
+					isTrue=0;
+				}
+				
+				//validation for to date
+				var returnDate = document.getElementById('returnedDate').value;
+				var returnDateParse =parseDMY(returnDate);
+				if(isNaN (returnDateParse)){
+					document.getElementById('errorMsgRented').innerHTML="Please enter valid date in YYYY/MM/DD format";
+					isTrue=0;
+				}
+				if(today>parseDMY(startDate)){
+					document.getElementById('errorMsgRented').innerHTML="Date must be greater than today";
+					isTrue=0;
+				}
+				if(startDateParse>returnDateParse){
+					document.getElementById('errorMsgRented').innerHTML="Rent return date must be greater than rented date";
+					isTrue=0;
+				}
+				
+				return isTrue;
+				//alert("date must not be null and must be in YYYY/MM/DD");
+			
+	}
+	
+	function parseDMY(value) {
+    var date = value.split("/");
+    var d = parseInt(date[2], 10),
+        m = parseInt(date[1], 10),
+        y = parseInt(date[0], 10);
+    return new Date(y, m - 1, d);
+}
+
+	
+
+</script>
+
+
 </head>
 <body>
 
 	<h2>Rent a Car</h2>
 
-
-	<table>
+<div style="float:left">
+	<table frame="box">
 		
 			<tr><td>Company:</td><td>${car.company}</td></tr>
 			<tr><td>Status : </td><td>${car.status }</td></tr>
@@ -28,39 +92,42 @@
 		
 	</table>
 
+</div>
+	<div><img style="margin-left: 10px;" height="auto" width="auto" src="../images/${car.id}.jpg" /> </div>
+<div style="clear:both"/>
 
-	<div><img height="100px" width="100px" src="../images/${car.id}.jpg"/> </div>
 
-
-
-	<form method="POST" action="/pay">
+	<form method="POST" action="/pay" onsubmit="return validateForm()">
 		<table>
-			<!-- <tr>
-				<td><label>Rent per Day</label></td>
-				<td><input type="text" name="rentPerDay" /></td>
-			</tr> -->
+			
 			<tr>
 
 				<td><label>From Date:</label></td>
-				<td><input type="text" name="rentedDate" /></td>
+				<td><input type="text" name="rentedDate" id="rentedDate"/></td>
+				<td><span id="errorMsgRent" style="color:red"/></td>
 			</tr>
 			<tr>
 				<td><label>To Date:</label></td>
-				<td><input type="text" name="returnedDate" /></td>
-
+				<td><input type="text" name="returnedDate" id="returnedDate"/></td>
+				<td><span id="errorMsgRented" style="color:red"/></td>
 			</tr>
 
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
+			
+			
 
 		</table>
 		
 	</form>
 	
 	
-	
 </body>
 
-</body>
+
+
+
+
+
 </html>
