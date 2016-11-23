@@ -18,6 +18,7 @@ body {
 </head>
 <body>
 	<div style="border: 2px solid blue; float: left; margin: 5px">
+		<h1>Welcome ${user}</h1><br/>
 		<h1>All Cars list</h1>
 		<table>
 			<tr>

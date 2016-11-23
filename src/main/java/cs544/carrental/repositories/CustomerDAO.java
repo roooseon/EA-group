@@ -9,4 +9,5 @@ import cs544.carrental.domain.Customer;
 @Repository("customerRepository")
 public interface CustomerDAO extends CrudRepository<Customer, Integer>{
 
-}
+	public Customer findByUsername(String userName);
+	}

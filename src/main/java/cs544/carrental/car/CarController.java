@@ -2,6 +2,7 @@ package cs544.carrental.car;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -22,14 +23,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import cs544.carrental.customer.CustomerServiceImpl;
 import cs544.carrental.domain.Car;
 import cs544.carrental.domain.CarType;
+import cs544.carrental.domain.Customer;
 
 @Controller
 public class CarController {
 
 	@Autowired
 	CarService carService;
+	
+	@Autowired
+	CustomerServiceImpl customerService;
 
 	@Autowired
 	ServletContext servletContext;
@@ -49,6 +55,7 @@ public class CarController {
 		
 			if(!result.hasErrors()) {
 				Car savedCar = carService.addCar(car);
+				model.addAttribute("message",new String("Car added successfully"));	
 				System.out.println(savedCar.getId());
 				System.out.println("-------------------------");
 				System.out.println("-------------------------");
@@ -72,7 +79,7 @@ public class CarController {
 		else{
 			view = "addCar";
 		}
-			model.addAttribute("message",new String("Car added successfully"));	
+			
 		return view;
 	}
 	
@@ -126,7 +133,10 @@ public class CarController {
 	}	
 	
 	@RequestMapping(value = "/carlistuser", method = {RequestMethod.GET, RequestMethod.POST})
-	public String carListUser(Map<String, Object> model) {
+	public String carListUser(Map<String, Object> model,Principal p,Model m) {
+		System.out.println("@@@@@@@@@"+p.getName()+"@@@@@@@@");
+		Customer c=customerService.getCustomerByUserName(p.getName());
+		m.addAttribute("user",c.getName());
 		model.put("car", carService.getAvailableCars());
 		return "carListUser";
 	}	
