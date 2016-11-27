@@ -151,7 +151,7 @@ public class CarController {
 	public String carListUser(Map<String, Object> model,Principal p,Model m) {
 		System.out.println("@@@@@@@@@"+p.getName()+"@@@@@@@@");
 		Customer c=customerService.getCustomerByUserName(p.getName());
-		m.addAttribute("user",c.getName());
+		m.addAttribute("user", c.getName());
 		model.put("car", carService.getAvailableCars());
 		return "carListUser";
 	}
@@ -182,9 +182,9 @@ public class CarController {
 		//System.out.println("#############"+cr);
 		System.out.println(cr.toString());
 		model.addAttribute("cr",cr);
-		model.addAttribute("car",carService.getAvailableCars());
+		model.addAttribute("car",carService.getRentedCars());
 		model.addAttribute("user",c.getName());
-		return "carListUser";
+		return "usercarlist";
 	}
 	
 /*	@RequestMapping(value = "/carlist", method = RequestMethod.POST)
@@ -213,7 +213,7 @@ public class CarController {
 	public String removePerson(@PathVariable("id") int id) {
 		carService.deleteCar(id);
 		System.out.println("Delete function");
-		return "redirect:/carlistuser";
+		return "redirect:/carlist";
 	}
 	
 	

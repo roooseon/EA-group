@@ -48,7 +48,7 @@ body {
 					<td><img height="30px" width="30px"
 						src="../images/${car.id}.jpg" /></td>
 
-					<td><form action="cardetailsuser/${car.id}">
+					<td><form action="/cardetailsuser/${car.id}">
 							<input type="submit" value="View Details" />
 						</form></td>
 
@@ -62,8 +62,8 @@ body {
 
 
 		</table>
-		<form action="/mycars"><input type="submit" value="My rented Cars"/> </form>
-		 <c:if test="${cr!=null}"> 
+	<form action="/mycars"><input type="submit" value="My rented Cars"/> </form>
+		 <%-- <c:if test="${cr!=null}"> 
 		<table>
 			<tr>
 				<th>Company</th>
@@ -89,7 +89,7 @@ body {
 					<td>${car.dailyRent}</td>
 
 					<td><img height="30px" width="30px" src="../images/${car.id}.jpg"/> </td>
-					</tr></c:forEach></table></c:if>
+					</tr></c:forEach></table></c:if> --%>
 		
 
 	</div>

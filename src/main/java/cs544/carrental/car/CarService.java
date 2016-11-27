@@ -66,6 +66,26 @@ public class CarService implements ICarService{
 		return avaialbleCars ;
 	}
 
+
+	public List<Car>getRentedCars(){
+		List<Car> allCars =  (List<Car>) cardao.findAll();
+		List<Car> rentedCars  = new ArrayList<Car>(); 
+		/*Iterator it = allCars.iterator();
+
+		while(it.hasNext()){
+		 Car car =(Car) it.next() ;
+		 if (car.getStatus() == Status.AVAILABLE)
+			 avaialbleCars.add(car);
+		}*/
+		
+		for(Car c: allCars){
+			if(c.getStatus().equals(Status.RENTED)){
+				rentedCars.add(c);
+			}
+		}
+		return rentedCars ;
+	}
+
 	/*@Override
 	public List<Car> getSedanCars() {
 		

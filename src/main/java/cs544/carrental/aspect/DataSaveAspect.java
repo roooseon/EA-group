@@ -1,4 +1,5 @@
 package cs544.carrental.aspect;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,7 +22,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 @Component
 public class DataSaveAspect {
-	
+
 	Logger logger = Logger.getLogger("MyLog");
 	private FileHandler fh = null;
 
@@ -40,7 +41,7 @@ public class DataSaveAspect {
 
 			// the following statement is used to log any messages
 			logger.info(msg + " at current time :" + dateFormat.format(date));
-			
+
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -53,7 +54,7 @@ public class DataSaveAspect {
 		String method = joinpoint.getSignature().getName();
 
 		message(method + " action has been performed for current store");
-			}
+	}
 
 	@Around("execution(public * cs544.carrental.customer.CustomerController.*(..)))")
 	public Object invoke(ProceedingJoinPoint call) throws Throwable {
@@ -62,21 +63,9 @@ public class DataSaveAspect {
 		Object retVal = call.proceed();
 		sw.stop();
 		long totaltime = sw.getLastTaskTimeMillis();
-		
+
 		message("Time to execute (in Mili second) " + "is :" + totaltime);
 		return retVal;
 	}
 
-	/*public void sendMailEveryHour() {
-
-		try {
-			
-			message("Sending mail of product report to manager in very hour :");
-			
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}*/
-
-	}
-
-
+}
